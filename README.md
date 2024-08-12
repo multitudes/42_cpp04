@@ -7,7 +7,7 @@ Subtype polymorphism, abstract classes, interfaces.
 
 ## ex00
 ### Description
-In this exercise I will create a class Animal, but I will not implement a pure virtual function. 
+In this exercise I will create a class Animal, but I will not implement a pure virtual function.  My function will be implemented in the base class and in the derived class will be reimplemented. Therefore I add the keyword virtual to the function makeSound in the class Animal to indicate that the function will be RE-implemented in the derived class.
 ```
 class Animal {
 	public:
@@ -15,21 +15,137 @@ class Animal {
 	[...]
 }
 ```
-This means that I allow an implementation of the function makeSound in the class Animal. 
+
 There is a class WrongAnimal that shows the wrong implementation of the function makeSound.  
 
-I made a test_cpp folder in which I test creating different objects of the class Animal and WrongAnimal and veryfing the order of the constructors and destructors. 
 
-## ex01
+To demonstrate the incorrect overriding behavior, we need to:
 
+- Create a base class (WrongAnimal) with a non-virtual makeSound method.
+- Create a derived class (WrongCat) that overrides the makeSound method.
+- Observe that the base class's makeSound method is still called when accessing the derived class object through a base class pointer.
+
+
+```cpp
+#include <iostream>
+
+class WrongAnimal {
+public:
+    void makeSound() const {
+        std::cout << "Generic animal sound\n";
+    }
+};
+
+class WrongCat : public WrongAnimal {
+public:
+    void makeSound() const override {
+        std::cout << "Meow!\n";
+    }
+};
+
+int main() {
+    WrongAnimal* animal = new WrongCat();
+    animal->makeSound(); // Will output "Generic animal sound"
+    delete animal;
+    return 0;
+}
+```
+
+### Testing
+In each exercise I created a test_cpp folder in which I test creating different objects of the class Animal and WrongAnimal and verifying the order of the constructors and destructors. 
+ 
+## ex01 - Deep Copy
 ### Description
+Now the animals cat and dogs get a brain too... this is tricky because the brain contains an array of ideas. It is easy to forget that an array is a pointer to 
+the first element of the array. So they hope that we forget to make a deep copy in the copy constructors of the Brain class and fail the exercise. Of course we will not forget that.
 
-## ex02
-
+## ex02 - Abstract classes
+Change the Animal class to abstract.
 ### Description
+An abstract class is a base class that cannot be instantiated directly. It serves as a blueprint for derived classes, defining a common interface but leaving the implementation details to the derived classes.
+Key Characteristics of Abstract Classes:
+- At least one pure virtual function: A pure virtual function is a virtual function declared with = 0 in the class declaration. It has no implementation in the base class.
+- Cannot be instantiated: You cannot create objects of an abstract class.
+- Force implementation in derived classes: Derived classes must provide implementations for all inherited pure virtual functions to become concrete (non-abstract).
 
-## ex03
-
+## ex03 - Interface 
 ### Description
+> Interfaces don’t exist in C++98 (not even in C++20). However, pure abstract classes
+are commonly called interfaces - From the 42 subject. 
+
+In C++, the concept of an "interface" as a distinct language feature 
+does not exist like it does in some other languages such as Java or C#. 
+However, the concept of an interface as a contract for how a class should 
+behave is still very much present in C++. This is typically achieved through 
+the use of pure abstract classes.
+
+A pure abstract class in C++ is a class that has at least one pure virtual 
+function. A pure virtual function is a function that is declared in a 
+base class and has no implementation in the base class. Derived classes 
+are required to provide an implementation for this function. 
+If a class contains only pure virtual functions (and possibly also 
+static data members), it is often referred to as an "interface" 
+because it defines a set of operations that derived classes must support, 
+but does not provide any default implementation for these operations.
+
+Where is the difference between Interfaces and Abstract Classes in C++?
+
+- Definition: An abstract class with only pure virtual functions.
+- Purpose: Defines a contract that derived classes must adhere to.
+- Features: Contains only pure virtual functions. No data members or constructors allowed. Supports multiple inheritance through virtual inheritance.
+
+### The goal
+Complete the definition of the following AMateria class and implement the necessary
+member functions.
+```cpp
+class AMateria
+{
+	protected:
+	[...]
+	public:
+	AMateria(std::string const & type);
+	[...]
+	std::string const & getType() const; //Returns the materia type
+	virtual AMateria* clone() const = 0;
+	virtual void use(ICharacter& target);
+}
+```
+Then implement the Materias concrete classes Ice and Cure
+
+### Subtype polymorphism
+allows objects of different types to be treated as if they were objects of a common supertype. This is achieved through inheritance and virtual functions.   
+ex:
+```cpp
+int main() {
+    Animal* animals[2] = {new Dog(), new Cat()};
+    for (int i = 0; i < 2; ++i) {
+        animals[i]->makeSound();
+    }
+}
+```
+
+
+### Dynamic Dispatch: Arrays of Objects vs. Arrays of Pointers
+Understanding the Difference:  
+
+- Dynamic dispatch is the mechanism by which a virtual function call is resolved at runtime based on the actual type of the object, rather than the static type of the pointer or reference.
+
+When considering arrays of objects versus arrays of pointers in the context of dynamic dispatch, the key difference lies in how the objects are stored and accessed.
+Array of Objects:
+- Direct storage: Objects are stored directly in the array.
+- No indirection: Accessing elements is direct and efficient.
+- Limited polymorphism: While you can use base class pointers to access array elements, the actual type of the objects is fixed.
+- Less flexible: Adding or removing elements is less flexible compared to arrays of pointers.
+
+Array of Pointers:
+- Indirect storage: The array stores pointers to objects, which are allocated elsewhere.
+- Indirection overhead: Accessing elements involves an extra level of indirection, which can have a slight performance impact.
+- Greater flexibility: You can store pointers to different derived types in the same array, enabling true polymorphism.
+- Memory management: Careful management of pointer allocation and deallocation is required to avoid memory leaks.
+
+When to Use Which:
+- Array of objects: Suitable when you know the exact types of objects at compile time and don't need to change them dynamically. Offers better performance due to direct access.
+- Array of pointers: Ideal when dealing with polymorphic objects, where the actual type of the object might vary. Provides more flexibility at the cost of potential performance overhead.
 
 ## Links
+https://en.wikipedia.org/wiki/Polymorphism_(computer_science)  
