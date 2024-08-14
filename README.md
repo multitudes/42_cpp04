@@ -147,5 +147,50 @@ When to Use Which:
 - Array of objects: Suitable when you know the exact types of objects at compile time and don't need to change them dynamically. Offers better performance due to direct access.
 - Array of pointers: Ideal when dealing with polymorphic objects, where the actual type of the object might vary. Provides more flexibility at the cost of potential performance overhead.
 
+## Honorable mention
+Not used in this project, but C++ 11 brings smart pointer types std::unique_ptr and std::shared_ptr to provide automatic memory management. They are designed to help prevent memory leaks by automatically releasing the memory associated with the object they point to when they go out of scope.
+### std::unique_ptr
+- Ownership: Represents exclusive ownership of the object it points to.  
+- Lifetime: The object is destroyed when the unique_ptr goes out of scope.  
+- Copy and Move: Cannot be copied, but can be moved. This prevents multiple pointers from managing the same object.  
+- Use cases: When only one owner is needed for an object.   
+
+### std::shared_ptr  
+- Ownership: Multiple shared_ptrs can share ownership of an object.  
+- Reference Counting: Keeps track of the number of shared_ptrs pointing to the object. The object is destroyed when the last shared_ptr goes out of scope.  
+- Copy and Move: Can be copied and moved.  
+- Use cases: When multiple owners might need to access the same object.  
+
+Remember that shared_ptr has a reference counting overhead.
+
+Example 
+```cpp
+#include <memory>
+
+class MyClass {
+public:
+    MyClass() { std::cout << "Constructor called\n"; }
+    ~MyClass() { std::cout << "Destructor called\n"; }
+};
+
+int main() {
+    // unique_ptr
+    std::unique_ptr<MyClass> uniquePtr(new MyClass()); // Ownership
+
+    // shared_ptr
+    std::shared_ptr<MyClass> sharedPtr1(new MyClass());
+    std::shared_ptr<MyClass> sharedPtr2(sharedPtr1); // Shared ownership
+
+    return 0;
+}
+```
+No need to duse delete to free the memory.
+
+## malloc vs. new: Error Handling
+In C, using malloc requires a null pointer check because it returns NULL on failure. This is crucial for preventing crashes.  
+In C++, new throws a std::bad_alloc exception on failure. This is generally considered better error handling because it allows you to gracefully handle the situation using try-catch blocks.  
+If your program is designed to terminate on memory allocation failure, you can let the exception propagate. Or else you can use a try catch block to gracefully exit but this is not very common.
+
+
 ## Links
 https://en.wikipedia.org/wiki/Polymorphism_(computer_science)  
