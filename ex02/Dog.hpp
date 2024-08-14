@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:30:34 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/11 14:09:13 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:18:51 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ class Dog : public AAnimal {
 		Dog &operator=( const Dog& assign);
 
 		void makeSound( void ) const;
+		
 		void setIdea( int index, std::string idea );
 		std::string const getIdea( int index ) const;
 		
 	private:
-		std::string type;
 		Brain *brain;
 };
 

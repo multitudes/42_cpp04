@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:10:38 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/11 12:10:00 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:19:24 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ class WrongCat : public WrongAnimal {
 		// member functions
 		// wrongcat will use the sound of the parent class
 		void makeSound( void ) const;
-
-		protected:
-			std::string type;
 };
 
 #endif  // WRONGCAT_HPP_

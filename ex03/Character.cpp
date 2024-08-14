@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:29:32 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/12 16:29:54 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:25:57 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,15 @@ void Character::unequip( int idx )
 	if (idx >= 0 && idx < 4 && this->inventory[idx] != NULL) {
 		// Save the pointer to be deleted in the DiscardedMateria to be cleaned up later
 		DiscardedMateria* newMateria = new DiscardedMateria(this->inventory[idx]);
-		newMateria->next = materiaOnFloor;
-		materiaOnFloor = newMateria;
+		if (materiaOnFloor == NULL) {
+			materiaOnFloor = newMateria;
+		} else {
+			newMateria->next = materiaOnFloor;
+			materiaOnFloor = newMateria;
+		}
+		// Remove the pointer from the inventory
+		// I do not delete the materia from the inventory
+		// because it is now in the discardedMateria list
 		this->inventory[idx] = NULL;
 	}
 }

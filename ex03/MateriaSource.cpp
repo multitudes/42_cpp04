@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:00:36 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/12 16:32:30 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:27:38 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ MateriaSource::~MateriaSource() {
  * @brief Copy constructor
  * 
  * @param copy 
- * Copy constructor
+ * Copy constructor with deep copy
  */
 MateriaSource::MateriaSource(const MateriaSource& copy) : _materiaCount(copy._materiaCount) {
 	std::cout << "MateriaSource copy constructor called" << std::endl;

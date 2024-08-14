@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:31:05 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/12 16:31:26 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:26:55 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ Cure::Cure() : AMateria("cure") {
  */
 Cure::Cure(const Cure &src) : AMateria(src) {
 	std::cout << "Cure copy constructor" << std::endl;
-	*this = src;
 }
 
 /**

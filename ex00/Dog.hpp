@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:30:34 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/11 11:46:07 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:18:05 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Dog : public Animal {
 		~Dog( void );
 		Dog( const Dog& copy);
 		Dog &operator=( const Dog& assign);
+		
 		// override
 		void makeSound( void ) const;
 };
