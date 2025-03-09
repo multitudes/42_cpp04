@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:16:52 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/11 11:47:17 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/16 17:58:32 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * 
  * Default constructor
  */
-Animal::Animal( void ) : type("-")
+Animal::Animal( void ) : type("animal")
 {
 	std::cout << "Animal default constructor called" << std::endl;
 }
@@ -82,5 +82,5 @@ std::string const Animal::getType( void ) const {
  * It is a virtual function but for now implemented as empty
  */
 void Animal::makeSound( void ) const {
-	std::cout << "---" << std::endl;
+	std::cout << "---some animal sound ---" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 18:16:26 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/11 11:46:59 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/10/01 14:07:33 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,22 @@
 
 int main( void )
 {
-	Animal cat = Cat();
+	Animal *meta = new Animal();
+	Cat     *i = new Cat();
+	
+	std::cout << meta->getType() << " " << std::endl;
+	meta->makeSound(); //Animal makes animal sound.
+	//  Cat originalCat;
+    // Cat copiedCat(originalCat);
+	
+
+	(*meta)=(*i);
+	std::cout << meta->getType() << " " << std::endl;
+	meta->makeSound(); //Cat makes animal sound.
+	delete meta;
+	delete i;
+	
+	// Animal cat = Cat();
 
 	// const Animal* annimal = new Animal(); 
 	// const Animal* haraki = new Dog();

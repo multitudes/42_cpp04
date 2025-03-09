@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:32:04 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/12 16:13:28 by lbrusa           ###   ########.fr       */
+/*   Updated: 2024/08/28 11:44:13 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ Ice::~Ice() {
 Ice &Ice::operator=(const Ice &assign) {
 	if (this != &assign) {
 		std::cout << "Ice assignment operator" << std::endl;
+		// AMateria::operator=(assign);
 	}
 	return *this;
 }
