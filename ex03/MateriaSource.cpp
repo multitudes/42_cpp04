@@ -6,7 +6,7 @@
 /*   By: lbrusa <lbrusa@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:00:36 by lbrusa            #+#    #+#             */
-/*   Updated: 2024/08/12 16:32:30 by lbrusa           ###   ########.fr       */
+/*   Updated: 2025/03/14 10:51:48 by lbrusa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,10 @@ void MateriaSource::learnMateria(AMateria* materia) {
 	if (materia != 0 && this->_materiaCount < 4) {
 		this->_materia[this->_materiaCount] = materia;
 		this->_materiaCount++;
-	}	
+	} else {
+		delete materia;
+		std::cout << "MateriaSource is full or materia is 0" << std::endl;
+	}
 }
 
 /**
